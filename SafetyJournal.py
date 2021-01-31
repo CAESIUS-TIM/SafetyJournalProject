@@ -147,7 +147,7 @@ class SafetyJournal:
         except:
             pass  # 默认已登录
 
-    def submit(self):
+    def submit(self) -> bool:
         self.driver.get(self.submit_url)
         print('打开网站')
         time.sleep(self.delayTime)
@@ -203,11 +203,18 @@ class SafetyJournal:
             '//a[text()="确定"]').click()  # 确认提交无误
         time.sleep(self.delayTime)
 
+        success = self.driver.find_elements_by_xpath('//*[@id="layui-layer2"]/div[text()="提交成功！"]')
         
         self.driver.quit()  # 关闭浏览器`
 
+        return bool(success)
 
-if __name__ == '__main__':
+
+def main() -> bool:
     sj = SafetyJournal(config='./config.ini', encoding="utf8")
     sj.login()
-    sj.submit()
+    return sj.submit()
+
+
+if __name__ == '__main__':
+    main()

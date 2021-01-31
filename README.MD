@@ -32,3 +32,18 @@ temperature=体温
 注意：
 
 1. 若是其他目录，但是请注意路径
+
+## 开机自启
+
+在开机启动文件夹(以下路径等价)创建一个`*.bat`文本文件
+```
+C:\Users\用户名\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+```
+内部填写`python`+`auto.py`的绝对路径, 就可以实现开机自动打卡，一天一次，还有打印错误log。
+
+如
+`SafetyJournal.dat`
+```
+python C:\SafetyJournalProject\auto.py
+```
